@@ -2,9 +2,11 @@
   <div class="footer">
     <div class="footer__links">
       <a class="footer__about" :href="aboutLink">
-        <p>
-          About
-        </p>
+        <router-link to="/about">
+          <p>
+            About
+          </p>
+        </router-link>
       </a>
     </div>
     <div class="footer__copyright">

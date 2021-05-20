@@ -27,6 +27,7 @@ export default {
   justify-content: center;
   padding: 1rem;
   text-align: left;
+  animation: fadeIn 1s 1;
 
   @media (min-width: 768px) {
     width: 400px;
@@ -57,6 +58,15 @@ img {
     margin: 1rem 2rem;
     height: 100px;
     width: 100px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-2rem);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 </style>
