@@ -13,7 +13,7 @@
       <p>{{ copyright }}</p>
         <a class="footer__author" :href="authorLink">
         <p>
-          {{ author }}
+          Code by {{ author }}
         </p>
       </a>
       <a class="footer__git" :href="gitLink">

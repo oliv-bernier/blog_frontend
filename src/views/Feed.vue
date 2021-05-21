@@ -1,23 +1,31 @@
 <template>
-    <div class="article">
-      <h1>{{ title }}</h1>
-      <div class="article__infos">
-        <p class="article__date">
+    <div class="feed">
+      <router-link to="/article">
+        <h1>
+          {{ title }}
+        </h1>
+      </router-link>
+      <div class="feed__infos">
+        <p class="feed__date">
           {{ published }}
         </p>
-        <p class="article__category">
+        <p class="feed__category">
           {{ category }}
         </p>
-        <p class="article__author">
+        <p class="feed__author">
           {{ author }}
         </p>
       </div>
-      <img :src="image" alt="Image illustrant l'article">
-      <p class="article__description">{{ description }}</p>
+      <router-link to="/article">
+        <img :src="image" alt="Image illustrant l'article">
+      </router-link>
+      <p class="feed__description">{{ description }}</p>
       <a :href="articleLink">
-        <p class="article__read">
-          Read more
-        </p>
+        <router-link to="/article">
+          <p class="feed__read">
+            Read more
+          </p>
+        </router-link>
       </a>
     </div>
 </template>
@@ -42,7 +50,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.article {
+.feed {
   display: flex;
   flex-direction: column;
   // background: orange;
@@ -69,10 +77,6 @@ export default {
     text-align: justify;
     margin: 1rem;
   }
-
-  &:hover {
-    background: orange;
-  }
 }
 
 h1 {
@@ -84,5 +88,11 @@ h1 {
 img {
   width: 100%;
   margin: 1rem 0;
+      transition-duration: .5s;
+
+  &:hover {
+    opacity: 0.5;
+    transition-duration: .5s;
+  }
 }
 </style>

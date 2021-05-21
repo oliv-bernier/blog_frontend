@@ -36,4 +36,8 @@ h1, h2 {
     font-size: 3rem;
   }
 }
+
+a:link, a:visited {
+  color: black;
+}
 </style>

@@ -17,9 +17,10 @@ export default {
 
 <style scoped lang="scss">
 .categories {
-  width: 25%;
+  width: 100%;
 
   @media (min-width: 1400px) {
+      width: 25%;
     align-self: flex-start;
     margin: 3rem 2rem;
   }
