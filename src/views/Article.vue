@@ -1,34 +1,36 @@
 <template>
   <div class="article">
-    <img class="article__cover" :src="image" alt="">
+    <img class="article__cover" :src="article.imageUrl" alt="">
     <div class="article__content">
       <h1>{{ title }}</h1>
       <div class="article__content-infos">
-        <p class="article__content-infos-author">{{ author }}</p>
-        <p class="article__content-infos-category">{{ category }}</p>
-        <p class="article__content-infos-date">Published on {{ published }}</p>
+        <p class="article__content-infos-author">auteur</p>
+        <p class="article__content-infos-category">{{ article.category.name }}</p>
+        <p class="article__content-infos-date">Published on {{ article.updatedAt }}</p>
       </div>
-      <div class="article__content-text" v-html="text" />
+      <div class="article__content-text" v-html="article.content" />
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Article',
   data() {
     return {
-      title: 'Why you should learn Vue.js',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.',
-      image: '/images/vuejs.jpg',
-      text: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>',
-      userId: '',
-      category: 'Web',
-      author: 'Olivier',
-      published: '20 mai 2021',
-      update: '',
-      articleLink: '#',
+      article: [],
     };
+  },
+  created() {
+    axios.get(`http://localhost:3000/api/articles/${this.$route.params.id}`)
+      .then((response) => {
+        this.article = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
 </script>

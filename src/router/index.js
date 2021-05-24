@@ -15,7 +15,7 @@ const routes = [
     component: () => import('../views/About.vue'),
   },
   {
-    path: '/article',
+    path: '/article/:id',
     name: 'Article',
     component: () => import('../views/Article.vue'),
   },
@@ -23,6 +23,12 @@ const routes = [
 
 const router = new VueRouter({
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  document.title = to.name;
+  next();
 });
 
 export default router;

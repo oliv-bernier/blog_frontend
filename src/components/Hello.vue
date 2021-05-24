@@ -12,7 +12,7 @@ export default {
   name: 'Hello',
   data() {
     return {
-      welcome: 'Hello ! My name is Olivier, I am a Frontend developer. I built this fictitious blog to manipulate Vue.js, Node.js, Express, and MongoDB.',
+      welcome: 'Hello ! My name is Olivier, I am a Frontend developer. I built this fictitious blog to manipulate Vue.js, with a backend part using Node.js, Express, and MongoDB.',
       avatar: '/images/avatar.png',
     };
   },

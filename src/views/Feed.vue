@@ -1,81 +1,101 @@
 <template>
-    <div class="feed">
-      <router-link to="/article">
+  <div class="feed">
+    <div class="feed__article" v-for="article in articles" :key="article._id">
+      <router-link :to="{ name: 'Article', params: { id: article._id } }">
         <h1>
-          {{ title }}
+          {{ article.title }}
         </h1>
       </router-link>
-      <div class="feed__infos">
-        <p class="feed__date">
-          {{ published }}
+      <div class="feed__article--infos">
+        <p class="feed__article--date">
+          {{ article.updatedAt }}
         </p>
-        <p class="feed__category">
-          {{ category }}
+        <p class="feed__article--category">
+          {{ article.category.name }}
         </p>
-        <p class="feed__author">
-          {{ author }}
+        <p class="feed__article--author">
+          auteur
         </p>
       </div>
-      <router-link to="/article">
-        <img :src="image" alt="Image illustrant l'article">
+      <router-link :to="{ name: 'Article', params: { id: article._id } }">
+        <img :src="article.imageUrl" alt="Image illustrant l'article">
       </router-link>
-      <p class="feed__description">{{ description }}</p>
-      <a :href="articleLink">
-        <router-link to="/article">
-          <p class="feed__read">
-            Read more
-          </p>
-        </router-link>
-      </a>
+      <p class="feed__article--description">{{ article.description }}</p>
+      <router-link :to="{ name: 'Article', params: { id: article._id } }">
+        <p class="feed__article--read">
+          Read more
+        </p>
+      </router-link>
     </div>
+  </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Feed',
   data() {
     return {
-      title: 'Why you should learn Vue.js',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.',
-      image: '/images/vuejs.jpg',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis cumque alias est dolorem obcaecati unde, tenetur inventore ducimus hic, modi sint accusantium praesentium. Quasi saepe error quod inventore reprehenderit.',
-      userId: '',
-      category: 'Web',
-      author: 'Olivier',
-      published: '20 mai 2021',
-      update: '',
-      articleLink: '#',
+      articles: [],
     };
+  },
+  created() {
+    axios.get('http://localhost:3000/api/articles/')
+      .then((response) => {
+        this.articles = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
 </script>
 
 <style scoped lang="scss">
 .feed {
-  display: flex;
-  flex-direction: column;
-  // background: orange;
-
   @media (min-width: 1400px) {
       width: 50%;
   }
 
-  &__infos {
+  &__article {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin: 2rem 0;
+    color: black;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid black;
 
-    p {
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--infos {
+      display: flex;
+      flex-direction: row;
+
+      p {
+        margin: 0 1rem;
+      }
+    }
+
+    &--description {
+      text-align: justify;
       margin: 0 1rem;
     }
-  }
 
-  &__description {
-    text-align: justify;
-    margin: 0 1rem;
-  }
+    &--read {
+      text-align: justify;
+      margin: 1rem;
+      color: black;
 
-  &__read {
-    text-align: justify;
-    margin: 1rem;
+      &:visited {
+        color: black;
+      }
+
+      &:link {
+        color: black;
+      }
+    }
   }
 }
 
@@ -83,12 +103,27 @@ h1 {
   text-align: left;
   margin: 1rem;
   font-size: 1.5rem;
+  color: black;
+
+  &:visited {
+    color: black;
+  }
+
+  &:link {
+    color: black;
+  }
 }
 
 img {
   width: 100%;
+  height: 200px;
   margin: 1rem 0;
-      transition-duration: .5s;
+  object-fit: cover;
+  transition-duration: .5s;
+
+  @media (min-width: 1400px) {
+    height: 400px;
+  }
 
   &:hover {
     opacity: 0.5;

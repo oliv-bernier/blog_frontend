@@ -2,25 +2,38 @@
   <div class="categories">
     <div class="categories__content">
       <h3>Categories</h3>
-      <p>> Web</p>
-      <p>> Design</p>
-      <p>> Other</p>
+      <p v-for="category in categories" :key="category.name">> {{ category.name }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Categories',
+  data() {
+    return {
+      categories: [],
+    };
+  },
+  created() {
+    axios.get('http://localhost:3000/api/categories')
+      .then((response) => {
+        this.categories = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
 };
 </script>
 
 <style scoped lang="scss">
 .categories {
-  width: 100%;
 
   @media (min-width: 1400px) {
-      width: 25%;
+    width: 25%;
     align-self: flex-start;
     margin: 3rem 2rem;
   }
