@@ -8,7 +8,7 @@
         <p class="article__content-infos-category">{{ article.category.name }}</p>
         <p class="article__content-infos-date">Published on {{ article.updatedAt }}</p>
       </div>
-      <div class="article__content-text" v-html="article.content" />
+      <div class="article__content-text" v-html="cleanContent" />
     </div>
   </div>
 </template>
@@ -31,6 +31,11 @@ export default {
       .catch((error) => {
         console.error(error);
       });
+  },
+  computed: {
+    cleanContent() {
+      return this.$sanitize(this.article.content);
+    },
   },
 };
 </script>
