@@ -11,7 +11,7 @@
           {{ article.updatedAt }}
         </p>
         <p class="feed__article--category">
-          {{ article.category.name }}
+          catégorie
         </p>
         <p class="feed__article--author">
           auteur
@@ -39,14 +39,28 @@ export default {
       articles: [],
     };
   },
-  created() {
-    axios.get('http://localhost:3000/api/articles/')
-      .then((response) => {
-        this.articles = response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  beforeMount() {
+    if (this.$route.params.id) {
+      axios.get(`http://localhost:3000/api/categories/${this.$route.params.id}/articles`)
+        .then((response) => {
+          console.log(response.data);
+          response.data.map((data) => {
+            this.articles = data.articles;
+            return console.log('ok');
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      axios.get('http://localhost:3000/api/articles/')
+        .then((response) => {
+          this.articles = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   },
 };
 </script>

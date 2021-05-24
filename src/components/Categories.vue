@@ -2,7 +2,15 @@
   <div class="categories">
     <div class="categories__content">
       <h3>Categories</h3>
-      <p v-for="category in categories" :key="category.name">> {{ category.name }}</p>
+      <router-link
+        v-for="category in categories" :key="category.name"
+        :to="{ name: 'FeedByCategory', params: { id: category._id }}"
+      >
+        <p @click="sendId">{{ category.name }}</p>
+      </router-link>
+            <router-link to="/">
+        <p>* Show all</p>
+      </router-link>
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <div class="article">
     <img class="article__cover" :src="article.imageUrl" alt="">
     <div class="article__content">
-      <h1>{{ title }}</h1>
+      <h1>{{ article.title }}</h1>
       <div class="article__content-infos">
         <p class="article__content-infos-author">auteur</p>
         <p class="article__content-infos-category">{{ article.category.name }}</p>
@@ -23,7 +23,7 @@ export default {
       article: [],
     };
   },
-  created() {
+  beforeMount() {
     axios.get(`http://localhost:3000/api/articles/${this.$route.params.id}`)
       .then((response) => {
         this.article = response.data;

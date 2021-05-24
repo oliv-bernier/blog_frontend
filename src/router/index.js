@@ -19,6 +19,11 @@ const routes = [
     name: 'Article',
     component: () => import('../views/Article.vue'),
   },
+  {
+    path: '/feed/:id',
+    name: 'FeedByCategory',
+    component: () => import('../views/Feed.vue'),
+  },
 ];
 
 const router = new VueRouter({

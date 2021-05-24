@@ -3,7 +3,7 @@
     <Header />
     <div id="main">
       <Hello />
-      <router-view />
+      <router-view :key="this.$route.params.id" />
       <Categories />
     </div>
     <Footer />
@@ -23,6 +23,11 @@ export default {
     Footer,
     Hello,
     Categories,
+  },
+  data() {
+    return {
+      id: '',
+    };
   },
 };
 </script>
