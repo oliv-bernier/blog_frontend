@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <router-link to="/"><h1>The Blog</h1></router-link>
+    <router-link to="/"><h1>A Blog</h1></router-link>
     <h2>Lorem Ipsum</h2>
   </div>
 </template>

@@ -24,6 +24,11 @@ const routes = [
     name: 'FeedByCategory',
     component: () => import('../views/Feed.vue'),
   },
+  {
+    path: '*',
+    name: '404',
+    component: () => import('../views/NotFound.vue'),
+  },
 ];
 
 const router = new VueRouter({

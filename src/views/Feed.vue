@@ -8,10 +8,10 @@
       </router-link>
       <div class="feed__article--infos">
         <p class="feed__article--date">
-          {{ article.updatedAt }}
+          {{ displayDate(article.updatedAt) }}
         </p>
         <p class="feed__article--category">
-          catégorie
+          {{ article.category.name }}
         </p>
         <p class="feed__article--author">
           auteur
@@ -62,11 +62,19 @@ export default {
         });
     }
   },
+  methods: {
+    displayDate(date) {
+      const published = new Date(date);
+      return published.toDateString();
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
 .feed {
+  font-family: 'Raleway', sans-serif;
+
   @media (min-width: 1400px) {
       width: 50%;
   }
