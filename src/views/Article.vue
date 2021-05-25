@@ -5,7 +5,7 @@
       <h1>{{ article.title }}</h1>
       <div class="article__content-infos">
         <p class="article__content-infos-author">auteur</p>
-        <p class="article__content-infos-category">{{ article.category.name }}</p>
+        <p class="article__content-infos-category">catégorie</p>
         <p class="article__content-infos-date">Published on {{ article.updatedAt }}</p>
       </div>
       <div class="article__content-text" v-html="cleanContent" />

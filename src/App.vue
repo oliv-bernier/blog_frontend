@@ -3,8 +3,10 @@
     <Header />
     <div id="main">
       <Hello />
-      <router-view :key="this.$route.params.id" />
-      <Categories />
+      <transition name="fade" mode="out-in">
+        <router-view :key="this.$route.params.id" />
+      </transition>
+      <Categories :key="this.$route.params.id" />
     </div>
     <Footer />
   </div>
@@ -40,6 +42,7 @@ export default {
 
 *:link, *:visited {
   text-decoration: none;
+  color: black;
 }
 
 #app {
@@ -60,5 +63,12 @@ export default {
   @media (min-width: 1400px) {
     flex-direction: row;
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease-in;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

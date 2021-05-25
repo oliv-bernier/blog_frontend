@@ -3,13 +3,30 @@
     <div class="categories__content">
       <h3>Categories</h3>
       <router-link
-        v-for="category in categories" :key="category.name"
+        v-for="(category, index) in categories"
+        :key="category._id"
         :to="{ name: 'FeedByCategory', params: { id: category._id }}"
       >
-        <p @click="sendId">{{ category.name }}</p>
+        <div
+          class="categories__content--category"
+          @mouseover="$set(hover, index, true)"
+          @mouseleave="$set(hover, index, false)"
+        >
+          <p
+            class="categories__content--category-select"
+            :class="{ selected: hover[index] }"
+          >
+            >
+          </p>
+          <p
+            class="categories__content--category-name"
+          >
+            {{ category.name }}
+          </p>
+        </div>
       </router-link>
-            <router-link to="/">
-        <p>* Show all</p>
+      <router-link to="/">
+        <p>Show all</p>
       </router-link>
     </div>
   </div>
@@ -23,6 +40,7 @@ export default {
   data() {
     return {
       categories: [],
+      hover: [],
     };
   },
   created() {
@@ -59,6 +77,21 @@ export default {
     p {
       margin: 0.5rem;
     }
+
+    &--category {
+        margin: .5rem 0;
+        transition-duration: .3s;
+
+      &-select, &-name {
+        display: inline-block;
+        transition-duration: .3s;
+      }
+    }
   }
+}
+
+.selected {
+  transform: translateX(.7rem);
+  transition-duration: .3s;
 }
 </style>
