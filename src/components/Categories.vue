@@ -25,9 +25,6 @@
           </p>
         </div>
       </router-link>
-      <router-link to="/">
-        <p>Show all</p>
-      </router-link>
     </div>
   </div>
 </template>

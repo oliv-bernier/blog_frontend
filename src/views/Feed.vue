@@ -1,6 +1,6 @@
 <template>
   <div class="feed">
-    <div class="feed__article" v-for="article in articles" :key="article._id">
+    <div class="feed__article" v-for="(article, index) in articles" :key="article._id">
       <router-link :to="{ name: 'Article', params: { id: article._id } }">
         <h1>
           {{ article.title }}
@@ -11,7 +11,7 @@
           {{ displayDate(article.updatedAt) }}
         </p>
         <p class="feed__article--category">
-          {{ article.category.name }}
+          {{ displayCategory(index) }}
         </p>
         <p class="feed__article--author">
           auteur
@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       articles: [],
+      categories: [],
     };
   },
   beforeMount() {
@@ -46,6 +47,7 @@ export default {
           console.log(response.data);
           response.data.map((data) => {
             this.articles = data.articles;
+            this.categories = data.name;
             return console.log('ok');
           });
         })
@@ -66,6 +68,12 @@ export default {
     displayDate(date) {
       const published = new Date(date);
       return published.toDateString();
+    },
+    displayCategory(index) {
+      if (this.$route.params.id) {
+        return this.categories;
+      }
+      return this.articles[index].category.name;
     },
   },
 };
