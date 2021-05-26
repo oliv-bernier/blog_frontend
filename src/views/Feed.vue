@@ -31,6 +31,9 @@
 </template>
 <script>
 import axios from 'axios';
+import baseUrl from '../api/url';
+
+axios.defaults.baseURL = baseUrl;
 
 export default {
   name: 'Feed',
@@ -42,7 +45,7 @@ export default {
   },
   beforeMount() {
     if (this.$route.params.id) {
-      axios.get(`http://localhost:3000/api/categories/${this.$route.params.id}/articles`)
+      axios.get(`/categories/${this.$route.params.id}/articles`)
         .then((response) => {
           console.log(response.data);
           response.data.map((data) => {
@@ -55,7 +58,7 @@ export default {
           console.error(error);
         });
     } else {
-      axios.get('http://localhost:3000/api/articles/')
+      axios.get('/articles/')
         .then((response) => {
           this.articles = response.data;
         })

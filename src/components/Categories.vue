@@ -31,6 +31,9 @@
 
 <script>
 import axios from 'axios';
+import baseUrl from '../api/url';
+
+axios.defaults.baseURL = baseUrl;
 
 export default {
   name: 'Categories',
@@ -41,7 +44,7 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost:3000/api/categories')
+    axios.get('/categories')
       .then((response) => {
         this.categories = response.data;
       })

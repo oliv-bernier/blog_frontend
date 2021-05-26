@@ -24,6 +24,9 @@
 
 <script>
 import axios from 'axios';
+import baseUrl from '../api/url';
+
+axios.defaults.baseURL = baseUrl;
 
 export default {
   name: 'Article',
@@ -33,7 +36,7 @@ export default {
     };
   },
   beforeMount() {
-    axios.get(`http://localhost:3000/api/articles/${this.$route.params.id}`)
+    axios.get(`/articles/${this.$route.params.id}`)
       .then((response) => {
         this.article = response.data;
       })
