@@ -4,7 +4,9 @@
     <div id="main">
       <Hello />
       <transition name="fade" mode="out-in">
-        <router-view :key="this.$route.params.id" />
+        <keep-alive>
+          <router-view :key="this.$route.params.id" />
+        </keep-alive>
       </transition>
       <Categories :key="this.$route.params.id" />
     </div>
@@ -66,7 +68,7 @@ export default {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease-in;
+  transition: opacity .3s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
