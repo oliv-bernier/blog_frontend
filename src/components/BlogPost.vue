@@ -1,5 +1,12 @@
 <template>
   <div class="post">
+    <button
+      class="logout"
+      type="submit"
+      @click.prevent="logout()"
+    >
+      Se déconnecter
+    </button>
     <form class="post__form">
       <div class="post__form-title">
         <label for="title" class="post__form-title-label">
@@ -35,20 +42,35 @@
 <script>
 export default {
   name: 'BlogPost',
+  methods: {
+    logout() {
+      localStorage.removeItem('user');
+      this.$emit('user-logout', {
+        logged: false,
+      });
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
+.logout {
+  margin: 1rem 0 0 0;
+  padding: .7rem;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
 .post {
+  &__form {
+    padding: 3rem;
+
   @media (min-width: 1400px) {
     width: 50%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
   }
-
-  &__form {
-    padding: 3rem;
 
     @media (min-width: 1400px) {
       width: 500px;

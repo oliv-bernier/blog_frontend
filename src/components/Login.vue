@@ -1,6 +1,9 @@
 <template>
   <div class="login">
-    <form class="login__form">
+    <form
+      class="login__form"
+      @submit.prevent="submitLogin"
+    >
       <div class="login__form-email">
         <label for="email" class="login__form-email-label">
           Votre adresse email
@@ -13,7 +16,6 @@
           v-model="email"
           placeholder="E-mail"
         />
-        <p>email {{ email }}</p>
       </div>
       <div class="login__form-password">
         <label for="password" class="login__form-password-label">
@@ -24,11 +26,14 @@
           name="password"
           id="password"
           class="login__form-password-input"
-          v-model="passowrd"
+          v-model="password"
           placeholder="Mot de passe"
         />
       </div>
-      <button class="login__form-button" type="submit">
+      <button
+        class="login__form-button"
+        type="submit"
+      >
         Se connecter
       </button>
     </form>
@@ -36,16 +41,36 @@
 </template>
 
 <script>
+import axios from 'axios';
+import baseUrl from '../api/url';
+
+axios.defaults.baseURL = baseUrl;
+
 export default {
   name: 'Login',
-  props: {
-    email: {
-      type: String,
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    submitLogin() {
+      const { email, password } = this.$data;
+      axios.post('/auth/login', {
+        email,
+        password,
+      })
+        .then((response) => {
+          const { token } = response.data;
+          axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+          localStorage.setItem('user', JSON.stringify(token));
+          this.$emit('user-logged', {
+            logged: true,
+            name: response.data.name,
+            token,
+          });
+        }).catch((error) => (console.error(error)));
     },
   },
 };
@@ -53,8 +78,6 @@ export default {
 
 <style scoped lang="scss">
 .login {
-  background: orange;
-
   @media (min-width: 1400px) {
     width: 50%;
     display: flex;
@@ -64,7 +87,6 @@ export default {
 
   &__form {
     padding: 3rem;
-    background: yellow;
 
     @media (min-width: 1400px) {
       width: 500px;
