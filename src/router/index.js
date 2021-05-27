@@ -25,6 +25,16 @@ const routes = [
     component: () => import('../views/Feed.vue'),
   },
   {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/Admin.vue'),
+  },
+  {
+    path: '/post',
+    name: 'BlogPost',
+    component: () => import('../views/BlogPost.vue'),
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('../views/NotFound.vue'),

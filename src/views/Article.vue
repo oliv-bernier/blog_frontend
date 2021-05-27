@@ -10,7 +10,7 @@
         </p>
         <p class="article__content-infos-author">
           <i class="fas fa-pen-nib"></i>
-          auteur
+          {{ article.user.name }}
         </p>
         <p class="article__content-infos-date">
           <i class="fas fa-clock"></i>

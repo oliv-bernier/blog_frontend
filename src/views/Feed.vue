@@ -14,7 +14,7 @@
           {{ displayCategory(index) }}
         </p>
         <p class="feed__article--author">
-          auteur
+          {{ article.author }}
         </p>
       </div>
       <router-link :to="{ name: 'Article', params: { id: article._id } }">
