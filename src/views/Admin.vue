@@ -1,23 +1,31 @@
 <template>
-    <div v-if="loggedIn">
-      This is the logged in one
-    </div>
-    <div v-else>
-      <Login />
-    </div>
+  <BlogPost
+    v-if="loggedIn"
+  />
+  <Login
+    v-else
+    :email="email"
+    :password="password"
+  />
 </template>
 
 <script>
 import Login from '../components/Login.vue';
+import BlogPost from '../components/BlogPost.vue';
 
 export default {
   name: 'Admin',
   components: {
     Login,
+    BlogPost,
   },
   data() {
     return {
       loggedIn: false,
+      name: '',
+      email: '',
+      password: '',
+      token: '',
     };
   },
 };
