@@ -1,19 +1,3 @@
-<template>
-  <div id="app">
-    <Header />
-    <div id="main">
-      <Hello />
-      <transition name="fade" mode="out-in">
-        <keep-alive>
-          <router-view :key="this.$route.params.id" />
-        </keep-alive>
-      </transition>
-      <Categories :key="this.$route.params.id" />
-    </div>
-    <Footer />
-  </div>
-</template>
-
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
@@ -35,6 +19,22 @@ export default {
   },
 };
 </script>
+
+<template>
+  <div id="app">
+    <Header />
+    <div id="main">
+      <Hello />
+      <transition name="fade" mode="out-in">
+        <keep-alive>
+          <router-view :key="this.$route.params.id" />
+        </keep-alive>
+      </transition>
+      <Categories :key="this.$route.params.id" />
+    </div>
+    <Footer />
+  </div>
+</template>
 
 <style lang="scss">
 * {

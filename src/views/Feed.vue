@@ -14,7 +14,7 @@
           {{ displayCategory(index) }}
         </p>
         <p class="feed__article--author">
-          auteur
+          {{ article.author }}
         </p>
       </div>
       <router-link :to="{ name: 'Article', params: { id: article._id } }">
@@ -29,6 +29,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 import baseUrl from '../api/url';
