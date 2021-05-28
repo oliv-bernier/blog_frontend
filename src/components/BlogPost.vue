@@ -18,11 +18,12 @@ export default {
   data() {
     return {
       categories: [],
+      postSent: false,
       title: '',
       description: '',
       content: '',
-      file: '',
       category: '',
+      file: '',
     };
   },
   created() {
@@ -69,7 +70,11 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       }).then(() => {
-        console.log('...Alors ?');
+        this.postSent = true;
+      }).then(() => {
+        setTimeout(() => {
+          this.postSent = false;
+        }, 3000);
       }).catch((error) => (console.error(error)));
     },
   },
@@ -148,6 +153,9 @@ export default {
       <button class="post__form-button" type="submit">
         Envoyer !
       </button>
+      <div v-if="postSent" class="post__sent">
+        Votre article a bien été envoyé !
+      </div>
     </form>
   </div>
 </template>
@@ -161,11 +169,19 @@ export default {
 }
 
 .post {
+  &__sent {
+    margin: 2rem 0 0 0;
+    background: lightgreen;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+
   &__title {
     font-size: 1.8rem;
     text-align: left;
     margin: 3rem 0 0 0;
   }
+
   &__form {
     padding: 3rem;
 
