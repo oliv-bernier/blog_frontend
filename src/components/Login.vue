@@ -1,3 +1,39 @@
+<script>
+import axios from 'axios';
+import baseUrl from '../api/url';
+
+axios.defaults.baseURL = baseUrl;
+
+export default {
+  name: 'Login',
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    submitLogin() {
+      const { email, password } = this.$data;
+      axios.post('/auth/login', {
+        email,
+        password,
+      }).then((response) => {
+        const { token, name, userId } = response.data;
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+        localStorage.setItem('user', JSON.stringify(token));
+        this.$emit('user-logged', {
+          logged: true,
+          name,
+          userId,
+          token,
+        });
+      }).catch((error) => (console.error(error)));
+    },
+  },
+};
+</script>
+
 <template>
   <div class="login">
     <form
@@ -39,42 +75,6 @@
     </form>
   </div>
 </template>
-
-<script>
-import axios from 'axios';
-import baseUrl from '../api/url';
-
-axios.defaults.baseURL = baseUrl;
-
-export default {
-  name: 'Login',
-  data() {
-    return {
-      email: '',
-      password: '',
-    };
-  },
-  methods: {
-    submitLogin() {
-      const { email, password } = this.$data;
-      axios.post('/auth/login', {
-        email,
-        password,
-      })
-        .then((response) => {
-          const { token } = response.data;
-          axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-          localStorage.setItem('user', JSON.stringify(token));
-          this.$emit('user-logged', {
-            logged: true,
-            name: response.data.name,
-            token,
-          });
-        }).catch((error) => (console.error(error)));
-    },
-  },
-};
-</script>
 
 <style scoped lang="scss">
 .login {

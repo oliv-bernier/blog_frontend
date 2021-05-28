@@ -29,6 +29,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 import baseUrl from '../api/url';

@@ -1,15 +1,3 @@
-<template>
-  <BlogPost
-    v-if="loggedIn"
-    :logged="loggedIn"
-    @user-logout="logout"
-  />
-  <Login
-    v-else
-    @user-logged="log"
-  />
-</template>
-
 <script>
 import axios from 'axios';
 import Login from '../components/Login.vue';
@@ -25,6 +13,7 @@ export default {
     return {
       loggedIn: false,
       name: '',
+      userId: '',
       token: '',
     };
   },
@@ -32,17 +21,33 @@ export default {
     log(payload) {
       this.loggedIn = payload.logged;
       this.name = payload.name;
+      this.userId = payload.userId;
       this.token = payload.token;
     },
     logout(payload) {
       delete axios.defaults.headers.common.Authorization;
       this.loggedIn = payload.logged;
       this.name = '';
+      this.userId = '';
       this.token = '';
     },
   },
 };
 </script>
+
+<template>
+  <BlogPost
+    v-if="loggedIn"
+    :logged="loggedIn"
+    @user-logout="logout"
+    :author="name"
+    :user="userId"
+  />
+  <Login
+    v-else
+    @user-logged="log"
+  />
+</template>
 
 <style scoped lang="scss">
 .login {
