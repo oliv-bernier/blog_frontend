@@ -79,6 +79,11 @@ export default {
 
     h1 {
       margin: 1rem 0;
+      font-size: 1.5rem;
+
+      @media (min-width: 1400px) {
+        font-size: 2.2rem;
+      }
     }
 
     &-infos {
