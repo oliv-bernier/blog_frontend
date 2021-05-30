@@ -30,7 +30,7 @@ export default {
   name: 'Footer',
   data() {
     return {
-      name: 'A Blog',
+      name: 'A dev\'s blog',
       author: 'Olivier Bernier',
       authorLink: 'https://www.obernier.fr',
       git: 'GitHub',
