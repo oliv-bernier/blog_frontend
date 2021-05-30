@@ -14,7 +14,7 @@
           {{ displayCategory(index) }}
         </p>
         <p class="feed__article--author">
-          {{ article.author }}
+          by {{ article.author }}
         </p>
       </div>
       <router-link :to="{ name: 'Article', params: { id: article._id } }">
@@ -55,6 +55,9 @@ export default {
             return console.log('ok');
           });
         })
+        .then(() => {
+          this.articles.reverse();
+        })
         .catch((error) => {
           console.error(error);
         });
@@ -62,6 +65,9 @@ export default {
       axios.get('/articles/')
         .then((response) => {
           this.articles = response.data;
+        })
+        .then(() => {
+          this.articles.reverse();
         })
         .catch((error) => {
           console.error(error);
@@ -156,7 +162,7 @@ img {
   transition-duration: .5s;
 
   @media (min-width: 1400px) {
-    height: 400px;
+    height: 300px;
   }
 
   &:hover {

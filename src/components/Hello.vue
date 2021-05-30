@@ -1,3 +1,15 @@
+<script>
+export default {
+  name: 'Hello',
+  data() {
+    return {
+      welcome: 'Hello ! My name is Olivier, I\'m a Frontend developer. I built this fictitious blog to manipulate Vue.js, with a backend using Node.js.',
+      avatar: '/images/avatar.png',
+    };
+  },
+};
+</script>
+
 <template>
   <div class="hello">
     <img :src="avatar" alt="Image de profil">
@@ -6,18 +18,6 @@
     </p>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Hello',
-  data() {
-    return {
-      welcome: 'Hello ! My name is Olivier, I am a Frontend developer. I built this fictitious blog to manipulate Vue.js, with a backend part for which I used Node.js, Express and MongoDB.',
-      avatar: '/images/avatar.png',
-    };
-  },
-};
-</script>
 
 <style scoped lang="scss">
 .hello {
