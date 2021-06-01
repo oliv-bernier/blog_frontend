@@ -1,5 +1,6 @@
 <template>
   <div class="feed">
+    <div v-if="postLoading" class="feed__loading">Loading posts...</div>
     <div class="feed__article" v-for="(article, index) in articles" :key="article._id">
       <router-link :to="{ name: 'Article', params: { id: article._id } }">
         <h1>
@@ -42,6 +43,7 @@ export default {
     return {
       articles: [],
       categories: [],
+      postLoading: true,
     };
   },
   beforeMount() {
@@ -60,6 +62,9 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+        })
+        .finally(() => {
+          this.postLoading = false;
         });
     } else {
       axios.get('/articles/')
@@ -71,6 +76,9 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+        })
+        .finally(() => {
+          this.postLoading = false;
         });
     }
   },
@@ -95,6 +103,18 @@ export default {
 
   @media (min-width: 1400px) {
       width: 50%;
+  }
+
+  &__loading {
+    margin: 3rem 1rem;
+    font-size: 2rem;
+    font-style: italic;
+    animation: loadIn 1s infinite ease-out;
+
+    @media (min-width: 1400px) {
+      font-size: 3rem;
+      animation: loadIn 1.5s infinite ease-out;
+    }
   }
 
   &__article {
@@ -168,6 +188,18 @@ img {
   &:hover {
     opacity: 0.5;
     transition-duration: .5s;
+  }
+
+  @keyframes loadIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 }
 </style>
