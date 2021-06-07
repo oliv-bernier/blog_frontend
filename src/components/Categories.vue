@@ -56,7 +56,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../_vars.scss';
+
 .categories {
+  color: var(--links);
 
   @media (min-width: 1400px) {
     width: 25%;
@@ -85,6 +88,7 @@ export default {
       &-select, &-name {
         display: inline-block;
         transition-duration: .3s;
+        color: var(--links);
       }
     }
   }

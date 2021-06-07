@@ -88,9 +88,14 @@ export default {
 
     &-infos {
       display: inline-flex;
+      font-size: .9rem;
 
       p {
         margin-right: 1rem;
+      }
+
+      @media (min-width: 1400px) {
+        font-size: 1.2rem;
       }
     }
 

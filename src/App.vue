@@ -15,14 +15,22 @@ export default {
   data() {
     return {
       id: '',
+      isDark: false,
     };
+  },
+  methods: {
+    toggleTheme() {
+      this.isDark = !this.isDark;
+    },
   },
 };
 </script>
 
 <template>
-  <div id="app">
-    <Header />
+  <div id="app" :class="{app__dark: isDark}">
+    <Header
+      @switch-theme="toggleTheme"
+    />
     <div id="main">
       <Hello />
       <transition name="fade" mode="out-in">
@@ -37,6 +45,8 @@ export default {
 </template>
 
 <style lang="scss">
+@import './_vars.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -53,6 +63,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: var(--background);
+  color: var(--text)
 }
 
 #main {

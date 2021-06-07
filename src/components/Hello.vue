@@ -20,8 +20,9 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@import '../_vars.scss';
+
 .hello {
-  background: white;
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -98,6 +98,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../_vars.scss';
+
 .feed {
   font-family: 'Raleway', sans-serif;
 
@@ -121,9 +123,9 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 2rem 0;
-    color: black;
+    color: var(--text);
     padding-bottom: 2rem;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--text);
 
     &:last-child {
       border-bottom: none;
@@ -146,14 +148,14 @@ export default {
     &--read {
       text-align: justify;
       margin: 1rem;
-      color: black;
+      color: var(--links);
 
       &:visited {
-        color: black;
+        color: var(--links);
       }
 
       &:link {
-        color: black;
+        color: var(--links);
       }
     }
   }
@@ -163,14 +165,14 @@ h1 {
   text-align: left;
   margin: 1rem;
   font-size: 1.5rem;
-  color: black;
+  color: var(--text);
 
   &:visited {
-    color: black;
+    color: var(--text);
   }
 
   &:link {
-    color: black;
+    color: var(--test);
   }
 }
 

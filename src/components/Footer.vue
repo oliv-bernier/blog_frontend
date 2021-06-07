@@ -48,9 +48,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../_vars.scss';
+
 .footer {
   font-family: 'Newsreader', serif;
-  background:#383838;
+  background: var(--footer);
   color: #FAFAFA;
   height: 150px;
   display: flex;
