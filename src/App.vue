@@ -46,16 +46,7 @@ export default {
 
 <style lang="scss">
 @import './_vars.scss';
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-*:link, *:visited {
-  text-decoration: none;
-  color: black;
-}
+@import './_general.scss';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -64,7 +55,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   background: var(--background);
-  color: var(--text)
+  color: var(--text);
+  transition: .5s;
 }
 
 #main {
