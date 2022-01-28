@@ -13,7 +13,7 @@
       <p>{{ copyright }}</p>
         <a class="footer__author" :href="authorLink">
         <p>
-          Code by {{ author }}
+          Designed and coded by {{ author }}
         </p>
       </a>
       <a class="footer__git" :href="gitLink">
@@ -34,14 +34,14 @@ export default {
       author: 'Olivier Bernier',
       authorLink: 'https://www.obernier.fr',
       git: 'GitHub',
-      gitLink: '#',
+      gitLink: 'https://github.com/oliv-bernier/blog_frontend',
       aboutLink: '#',
     };
   },
   computed: {
     copyright() {
       const currentYear = new Date().getFullYear();
-      return `© Copyright ${this.name} ${currentYear}`;
+      return `© Copyright ${this.name} 2021 - ${currentYear}`;
     },
   },
 };
@@ -51,6 +51,7 @@ export default {
 @import '../_vars.scss';
 
 .footer {
+  padding-top: 50px;
   font-family: 'Newsreader', serif;
   background: var(--footer);
   color: #FAFAFA;
@@ -60,16 +61,21 @@ export default {
   justify-content: center;
   align-items: center;
   margin: 2rem 0 0 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-around;
+    align-items: flex-start;
   }
 
   &__copyright {
     @media (min-width: 768px) {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 

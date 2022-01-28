@@ -6,11 +6,11 @@
       <div class="article__content-infos">
         <p class="article__content-infos-category">
           <i class="fas fa-scroll"></i>
-          {{ article.category.name }}
+          {{ article.category && article.category.name }}
         </p>
         <p class="article__content-infos-author">
           <i class="fas fa-pen-nib"></i>
-          {{ article.user.name }}
+          {{ article.author }}
         </p>
         <p class="article__content-infos-date">
           <i class="fas fa-clock"></i>
@@ -32,7 +32,7 @@ export default {
   name: 'Article',
   data() {
     return {
-      article: [],
+      article: {},
     };
   },
   beforeMount() {

@@ -1,11 +1,13 @@
 <template>
   <div class="about">
-    <h1>Browse my work</h1>
-    <a href="https://www.obernier.fr">
-      <p>
-        https://www.obernier.fr
-      </p>
-    </a>
+    <div class="about__content">
+      <h1>Browse my work</h1>
+      <a href="https://www.obernier.fr">
+       <p>
+         https://www.obernier.fr
+       </p>
+     </a>
+    </div>
   </div>
 </template>
 
@@ -19,8 +21,17 @@ export default {
 @import '../_vars.scss';
 
 .about {
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__content {
   font-family: 'Raleway', sans-serif;
   margin: 5rem 0;
+  width: 100%;
 
   @media (min-width: 1400px) {
       width: 50%;
@@ -28,6 +39,7 @@ export default {
 
   & h1 {
     font-size: 2rem;
+    width: 100%;
   }
 
   & a {

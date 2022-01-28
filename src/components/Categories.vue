@@ -5,7 +5,7 @@
       <router-link
         v-for="(category, index) in categories"
         :key="category._id"
-        :to="{ name: 'FeedByCategory', params: { id: category._id }}"
+        :to="{ name: 'FeedByCategory', params: { name: category.name }}"
       >
         <div
           class="categories__content--category"

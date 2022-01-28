@@ -1,8 +1,10 @@
 <template>
   <div class="feed">
     <div v-if="postLoading" class="feed__loading">Loading posts...</div>
-    <div class="feed__article" v-for="(article, index) in articles" :key="article._id">
-      <router-link :to="{ name: 'Article', params: { id: article._id } }">
+    <div class="feed__article" v-for="(article) in articles" :key="article._id">
+      <router-link
+        :to="{ name: 'Article', params: { id: article._id } }"
+      >
         <h1>
           {{ article.title }}
         </h1>
@@ -12,7 +14,7 @@
           {{ displayDate(article.updatedAt) }}
         </p>
         <p class="feed__article--category">
-          {{ displayCategory(index) }}
+          {{ article.category.name }}
         </p>
         <p class="feed__article--author">
           by {{ article.author }}
@@ -42,56 +44,35 @@ export default {
   data() {
     return {
       articles: [],
-      categories: [],
       postLoading: true,
     };
   },
   beforeMount() {
-    if (this.$route.params.id) {
-      axios.get(`/categories/${this.$route.params.id}/articles`)
-        .then((response) => {
-          console.log(response.data);
-          response.data.map((data) => {
-            this.articles = data.articles;
-            this.categories = data.name;
-            return console.log('ok');
-          });
-        })
-        .then(() => {
-          this.articles.reverse();
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-        .finally(() => {
-          this.postLoading = false;
-        });
-    } else {
-      axios.get('/articles/')
-        .then((response) => {
+    axios.get('/articles/')
+      .then((response) => {
+        if (this.$route.params.name) {
+          const fileteredArticles = response.data.filter((article) => (
+            article.category.name === this.$route.params.name
+          ));
+          this.articles = fileteredArticles;
+        } else {
           this.articles = response.data;
-        })
-        .then(() => {
-          this.articles.reverse();
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-        .finally(() => {
-          this.postLoading = false;
-        });
-    }
+        }
+      })
+      .then(() => {
+        this.articles.reverse();
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        this.postLoading = false;
+      });
   },
   methods: {
     displayDate(date) {
       const published = new Date(date);
       return published.toDateString();
-    },
-    displayCategory(index) {
-      if (this.$route.params.id) {
-        return this.categories;
-      }
-      return this.articles[index].category.name;
     },
   },
 };

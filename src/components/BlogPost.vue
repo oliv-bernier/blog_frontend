@@ -54,7 +54,6 @@ export default {
         category,
       } = this.$data;
       const formData = new FormData();
-      // console.log(this.file);
       formData.append('image', this.file);
       formData.append('article', JSON.stringify({
         title,
@@ -64,7 +63,6 @@ export default {
         user: this.$props.user,
         category,
       }));
-      // console.log(formData);
       axios.post('/articles/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

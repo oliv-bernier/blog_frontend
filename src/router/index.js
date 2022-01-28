@@ -1,28 +1,57 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import About from '../views/About.vue';
+import Article from '../views/Article.vue';
+import Categories from '../components/Categories.vue';
+import Hello from '../components/Hello.vue';
+import Feed from '../views/Feed.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
     name: 'Feed',
-    component: () => import('../views/Feed.vue'),
+    components: {
+      default: Feed,
+      hello: Hello,
+      nav: Categories,
+    },
+    props: {
+      nav: true,
+    },
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('../views/About.vue'),
+    components: {
+      default: About,
+    },
   },
   {
     path: '/article/:id',
     name: 'Article',
-    component: () => import('../views/Article.vue'),
+    components: {
+      default: Article,
+      hello: Hello,
+      nav: Categories,
+    },
+    props: {
+      nav: true,
+    },
   },
   {
-    path: '/feed/:id',
+    path: '/feed/:name',
     name: 'FeedByCategory',
-    component: () => import('../views/Feed.vue'),
+    components: {
+      default: Feed,
+      hello: Hello,
+      nav: Categories,
+    },
+    props: {
+      nav: true,
+    },
   },
   {
     path: '/admin',
@@ -45,7 +74,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
   document.title = to.name;
   next();
 });

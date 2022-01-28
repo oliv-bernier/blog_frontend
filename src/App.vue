@@ -1,16 +1,12 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-import Hello from '@/components/Hello.vue';
-import Categories from '@/components/Categories.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
     Footer,
-    Hello,
-    Categories,
   },
   data() {
     return {
@@ -32,13 +28,13 @@ export default {
       @switch-theme="toggleTheme"
     />
     <div id="main">
-      <Hello />
+      <router-view name="hello" />
       <transition name="fade" mode="out-in">
         <keep-alive>
-          <router-view :key="this.$route.params.id" />
+          <router-view :key="this.$route.fullPath" />
         </keep-alive>
       </transition>
-      <Categories :key="this.$route.params.id" />
+      <router-view name="nav" />
     </div>
     <Footer />
   </div>
@@ -57,6 +53,9 @@ export default {
   background: var(--background);
   color: var(--text);
   transition: .5s;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 250px;
 }
 
 #main {
