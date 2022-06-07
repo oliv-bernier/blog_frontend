@@ -29,9 +29,8 @@
 
 <script>
 import axios from 'axios';
-import baseUrl from '../api/url';
 
-axios.defaults.baseURL = baseUrl;
+axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
 export default {
   name: 'Feed',
