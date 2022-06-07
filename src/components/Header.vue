@@ -4,9 +4,7 @@
     <div class="header__switch">
       <input class="header__switch--theme" type="checkbox" @click="switchTheme()" />
       <label class="header__switch--theme-label" for="">
-        <span class="header__switch--theme-label-span">
-          Light
-        </span>
+        <span class="header__switch--theme-label-span"> Light </span>
       </label>
     </div>
   </div>
@@ -24,7 +22,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../_vars.scss';
+@import '../styles/_vars.scss';
 
 .header {
   height: 120px;
@@ -50,12 +48,13 @@ h1 {
   }
 }
 
-a:link, a:visited {
+a:link,
+a:visited {
   color: var(--links);
 }
 
 .header__switch {
-  background: #E0E0E0;
+  background: #e0e0e0;
   border: 2px solid white;
   border-radius: 30px;
   overflow: hidden;
@@ -69,11 +68,11 @@ a:link, a:visited {
   margin-right: 1rem;
 
   @media (min-width: 1400px) {
-      margin-right: 5rem;
+    margin-right: 5rem;
   }
 
   &:before {
-    content: "Dark";
+    content: 'Dark';
     color: var(--button-dark);
     position: absolute;
     top: 0;
@@ -115,8 +114,8 @@ a:link, a:visited {
       pointer-events: none;
 
       &:before {
-        content: "";
-        background: #2C3E50;
+        content: '';
+        background: #2c3e50;
         height: 100%;
         width: 100%;
         position: absolute;
@@ -133,5 +132,4 @@ a:link, a:visited {
     }
   }
 }
-
 </style>

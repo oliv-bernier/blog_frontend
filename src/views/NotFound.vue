@@ -15,7 +15,7 @@ export default {
 .error {
   margin: 5rem 0;
   @media (min-width: 1400px) {
-      width: 50%;
+    width: 50%;
 
     &__404 {
       font-size: 10rem;

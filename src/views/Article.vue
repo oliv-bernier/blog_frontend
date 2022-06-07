@@ -1,6 +1,6 @@
 <template>
   <div class="article">
-    <img class="article__cover" :src="article.imageUrl" alt="">
+    <img class="article__cover" :src="article.imageUrl" alt="" />
     <div class="article__content">
       <h1>{{ article.title }}</h1>
       <div class="article__content-infos">
@@ -32,11 +32,13 @@ export default {
   name: 'Article',
   data() {
     return {
+      // eslint-disable-next-line object-curly-newline
       article: {},
     };
   },
   beforeMount() {
-    axios.get(`/articles/${this.$route.params.id}`)
+    axios
+      .get(`/articles/${this.$route.params.id}`)
       .then((response) => {
         this.article = response.data;
       })
@@ -63,7 +65,7 @@ export default {
   font-family: 'Raleway', sans-serif;
   font-size: 1.2rem;
   text-align: left;
-  animation: fadeIn .5s 1;
+  animation: fadeIn 0.5s 1;
   margin: 2rem 0;
 
   @media (min-width: 1400px) {
@@ -88,7 +90,7 @@ export default {
 
     &-infos {
       display: inline-flex;
-      font-size: .9rem;
+      font-size: 0.9rem;
 
       p {
         margin-right: 1rem;

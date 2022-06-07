@@ -3,10 +3,8 @@
     <div class="about__content">
       <h1>Browse my work</h1>
       <a href="https://www.obernier.fr">
-       <p>
-         https://www.obernier.fr
-       </p>
-     </a>
+        <p>https://www.obernier.fr</p>
+      </a>
     </div>
   </div>
 </template>
@@ -18,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../_vars.scss';
+@import '../styles/_vars.scss';
 
 .about {
   height: 60vh;
@@ -34,7 +32,7 @@ export default {
   width: 100%;
 
   @media (min-width: 1400px) {
-      width: 50%;
+    width: 50%;
   }
 
   & h1 {

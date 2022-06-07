@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
-import Login from '../components/Login.vue';
-import BlogPost from '../components/BlogPost.vue';
+import Login from '../components/admin/Login.vue';
+import BlogPost from '../components/admin/BlogPost.vue';
 
 export default {
   name: 'Admin',
@@ -36,17 +36,8 @@ export default {
 </script>
 
 <template>
-  <BlogPost
-    v-if="loggedIn"
-    :logged="loggedIn"
-    @user-logout="logout"
-    :author="name"
-    :user="userId"
-  />
-  <Login
-    v-else
-    @user-logged="log"
-  />
+  <BlogPost v-if="loggedIn" :logged="loggedIn" @user-logout="logout" :author="name" :user="userId" />
+  <Login v-else @user-logged="log" />
 </template>
 
 <style scoped lang="scss">
@@ -65,7 +56,8 @@ export default {
       width: 500px;
     }
 
-    &-email, &-password {
+    &-email,
+    &-password {
       display: flex;
       flex-direction: column;
 
@@ -75,12 +67,13 @@ export default {
 
       &-input {
         border: 1px solid;
-        padding: .5rem;
+        padding: 0.5rem;
         border-radius: 5px;
       }
 
-      &-label, &-input {
-        margin: .3rem;
+      &-label,
+      &-input {
+        margin: 0.3rem;
       }
     }
 

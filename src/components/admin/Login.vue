@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import baseUrl from '../api/url';
+import baseUrl from '../../api/url';
 
 axios.defaults.baseURL = baseUrl;
 
@@ -15,20 +15,23 @@ export default {
   methods: {
     submitLogin() {
       const { email, password } = this.$data;
-      axios.post('/auth/login', {
-        email,
-        password,
-      }).then((response) => {
-        const { token, name, userId } = response.data;
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-        localStorage.setItem('user', JSON.stringify(token));
-        this.$emit('user-logged', {
-          logged: true,
-          name,
-          userId,
-          token,
-        });
-      }).catch((error) => (console.error(error)));
+      axios
+        .post('/auth/login', {
+          email,
+          password,
+        })
+        .then((response) => {
+          const { token, name, userId } = response.data;
+          axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+          localStorage.setItem('user', JSON.stringify(token));
+          this.$emit('user-logged', {
+            logged: true,
+            name,
+            userId,
+            token,
+          });
+        })
+        .catch((error) => console.error(error));
     },
   },
 };
@@ -36,14 +39,9 @@ export default {
 
 <template>
   <div class="login">
-    <form
-      class="login__form"
-      @submit.prevent="submitLogin"
-    >
+    <form class="login__form" @submit.prevent="submitLogin">
       <div class="login__form-email">
-        <label for="email" class="login__form-email-label">
-          Votre adresse email
-        </label>
+        <label for="email" class="login__form-email-label"> Votre adresse email </label>
         <input
           type="email"
           name="email"
@@ -54,9 +52,7 @@ export default {
         />
       </div>
       <div class="login__form-password">
-        <label for="password" class="login__form-password-label">
-          Votre mot de passe
-        </label>
+        <label for="password" class="login__form-password-label"> Votre mot de passe </label>
         <input
           type="password"
           name="password"
@@ -66,12 +62,7 @@ export default {
           placeholder="Mot de passe"
         />
       </div>
-      <button
-        class="login__form-button"
-        type="submit"
-      >
-        Se connecter
-      </button>
+      <button class="login__form-button" type="submit">Se connecter</button>
     </form>
   </div>
 </template>
@@ -92,7 +83,8 @@ export default {
       width: 500px;
     }
 
-    &-email, &-password {
+    &-email,
+    &-password {
       display: flex;
       flex-direction: column;
 
@@ -102,12 +94,13 @@ export default {
 
       &-input {
         border: 1px solid;
-        padding: .5rem;
+        padding: 0.5rem;
         border-radius: 5px;
       }
 
-      &-label, &-input {
-        margin: .3rem;
+      &-label,
+      &-input {
+        margin: 0.3rem;
       }
     }
 

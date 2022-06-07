@@ -1,10 +1,8 @@
 <template>
   <div class="feed">
     <div v-if="postLoading" class="feed__loading">Loading posts...</div>
-    <div class="feed__article" v-for="(article) in articles" :key="article._id">
-      <router-link
-        :to="{ name: 'Article', params: { id: article._id } }"
-      >
+    <div class="feed__article" v-for="article in articles" :key="article._id">
+      <router-link :to="{ name: 'Article', params: { id: article._id } }">
         <h1>
           {{ article.title }}
         </h1>
@@ -16,18 +14,14 @@
         <p class="feed__article--category">
           {{ article.category.name }}
         </p>
-        <p class="feed__article--author">
-          by {{ article.author }}
-        </p>
+        <p class="feed__article--author">by {{ article.author }}</p>
       </div>
       <router-link :to="{ name: 'Article', params: { id: article._id } }">
-        <img :src="article.imageUrl" alt="Image illustrant l'article">
+        <img :src="article.imageUrl" alt="Image illustrant l'article" />
       </router-link>
       <p class="feed__article--description">{{ article.description }}</p>
       <router-link :to="{ name: 'Article', params: { id: article._id } }">
-        <p class="feed__article--read">
-          Read more
-        </p>
+        <p class="feed__article--read">Read more</p>
       </router-link>
     </div>
   </div>
@@ -48,12 +42,13 @@ export default {
     };
   },
   beforeMount() {
-    axios.get('/articles/')
+    axios
+      .get('/articles/')
       .then((response) => {
         if (this.$route.params.name) {
-          const fileteredArticles = response.data.filter((article) => (
-            article.category.name === this.$route.params.name
-          ));
+          const fileteredArticles = response.data.filter(
+            (article) => article.category.name === this.$route.params.name
+          );
           this.articles = fileteredArticles;
         } else {
           this.articles = response.data;
@@ -79,13 +74,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../_vars.scss';
+@import '../styles/_vars.scss';
 
 .feed {
   font-family: 'Raleway', sans-serif;
 
   @media (min-width: 1400px) {
-      width: 50%;
+    width: 50%;
   }
 
   &__loading {
@@ -162,7 +157,7 @@ img {
   height: 200px;
   margin: 1rem 0;
   object-fit: cover;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 
   @media (min-width: 1400px) {
     height: 300px;
@@ -170,7 +165,7 @@ img {
 
   &:hover {
     opacity: 0.5;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
   }
 
   @keyframes loadIn {

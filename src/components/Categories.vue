@@ -5,22 +5,15 @@
       <router-link
         v-for="(category, index) in categories"
         :key="category._id"
-        :to="{ name: 'FeedByCategory', params: { name: category.name }}"
+        :to="{ name: 'FeedByCategory', params: { name: category.name } }"
       >
         <div
           class="categories__content--category"
           @mouseover="$set(hover, index, true)"
           @mouseleave="$set(hover, index, false)"
         >
-          <p
-            class="categories__content--category-select"
-            :class="{ selected: hover[index] }"
-          >
-            >
-          </p>
-          <p
-            class="categories__content--category-name"
-          >
+          <p class="categories__content--category-select" :class="{ selected: hover[index] }">></p>
+          <p class="categories__content--category-name">
             {{ category.name }}
           </p>
         </div>
@@ -37,6 +30,7 @@ axios.defaults.baseURL = baseUrl;
 
 export default {
   name: 'Categories',
+
   data() {
     return {
       categories: [],
@@ -44,7 +38,8 @@ export default {
     };
   },
   created() {
-    axios.get('/categories')
+    axios
+      .get('/categories')
       .then((response) => {
         this.categories = response.data;
       })
@@ -56,7 +51,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../_vars.scss';
+@import '../styles/_vars.scss';
 
 .categories {
   color: var(--links);
@@ -82,12 +77,12 @@ export default {
     }
 
     &--category {
-        margin: .5rem 0;
-        transition-duration: .3s;
-
-      &-select, &-name {
+      margin: 0.5rem 0;
+      transition-duration: 0.3s;
+      &-select,
+      &-name {
         display: inline-block;
-        transition-duration: .3s;
+        transition-duration: 0.3s;
         color: var(--links);
       }
     }
@@ -95,7 +90,7 @@ export default {
 }
 
 .selected {
-  transform: translateX(.7rem);
-  transition-duration: .3s;
+  transform: translateX(0.7rem);
+  transition-duration: 0.3s;
 }
 </style>

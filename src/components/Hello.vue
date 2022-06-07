@@ -3,7 +3,8 @@ export default {
   name: 'Hello',
   data() {
     return {
-      welcome: 'Hello ! My name is Olivier, I\'m a Frontend developer. I built this fictitious blog to manipulate Vue.js, with a backend using Node.js.',
+      welcome:
+        "Hello ! My name is Olivier, I'm a Frontend developer. I built this fictitious blog to manipulate Vue.js, with a backend using Node.js.",
       avatar: '/images/avatar.png',
     };
   },
@@ -12,7 +13,7 @@ export default {
 
 <template>
   <div class="hello">
-    <img :src="avatar" alt="Image de profil">
+    <img :src="avatar" alt="Image de profil" />
     <p>
       {{ welcome }}
     </p>
@@ -20,7 +21,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@import '../_vars.scss';
+@import '../styles/_vars.scss';
 
 .hello {
   display: flex;
@@ -42,8 +43,8 @@ export default {
 }
 
 p {
-    font-size: 1.2rem;
-    font-family: 'Newsreader', serif;
+  font-size: 1.2rem;
+  font-family: 'Newsreader', serif;
 
   @media (min-width: 768px) {
     font-size: 1.5rem;

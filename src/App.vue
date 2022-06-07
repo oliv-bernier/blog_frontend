@@ -23,10 +23,8 @@ export default {
 </script>
 
 <template>
-  <div id="app" :class="{app__dark: isDark}">
-    <Header
-      @switch-theme="toggleTheme"
-    />
+  <div id="app" :class="{ app__dark: isDark }">
+    <Header @switch-theme="toggleTheme" />
     <div id="main">
       <router-view name="hello" />
       <transition name="fade" mode="out-in">
@@ -41,8 +39,8 @@ export default {
 </template>
 
 <style lang="scss">
-@import './_vars.scss';
-@import './_general.scss';
+@import './styles/_vars.scss';
+@import './styles/_general.scss';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -52,7 +50,7 @@ export default {
   color: #2c3e50;
   background: var(--background);
   color: var(--text);
-  transition: .5s;
+  transition: 0.5s;
   position: relative;
   min-height: 100vh;
   padding-bottom: 250px;
@@ -70,10 +68,12 @@ export default {
   }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

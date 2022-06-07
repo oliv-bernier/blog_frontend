@@ -3,18 +3,14 @@
     <div class="footer__links">
       <a class="footer__about" :href="aboutLink">
         <router-link to="/about">
-          <p>
-            About
-          </p>
+          <p>About</p>
         </router-link>
       </a>
     </div>
     <div class="footer__copyright">
       <p>{{ copyright }}</p>
-        <a class="footer__author" :href="authorLink">
-        <p>
-          Designed and coded by {{ author }}
-        </p>
+      <a class="footer__author" :href="authorLink">
+        <p>Designed and coded by {{ author }}</p>
       </a>
       <a class="footer__git" :href="gitLink">
         <p>
@@ -30,7 +26,7 @@ export default {
   name: 'Footer',
   data() {
     return {
-      name: 'A dev\'s blog',
+      name: "A dev's blog",
       author: 'Olivier Bernier',
       authorLink: 'https://www.obernier.fr',
       git: 'GitHub',
@@ -48,13 +44,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../_vars.scss';
+@import '../styles/_vars.scss';
 
 .footer {
   padding-top: 50px;
   font-family: 'Newsreader', serif;
   background: var(--footer);
-  color: #FAFAFA;
+  color: #fafafa;
   height: 150px;
   display: flex;
   flex-direction: column;
@@ -91,11 +87,12 @@ p {
   margin: 0.5rem;
 }
 
-a:link, a:visited {
-  color:#F5F5F5;
+a:link,
+a:visited {
+  color: #f5f5f5;
 }
 
 a:hover {
-  color:#D3D3D3;
+  color: #d3d3d3;
 }
 </style>
