@@ -2,8 +2,6 @@
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
-console.log('toto =>', process.env.VUE_APP_API_URL);
-
 export default {
   name: 'App',
   components: {
