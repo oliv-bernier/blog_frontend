@@ -3,7 +3,7 @@
 A blog I made to practice Vue.js for this frontend part.
 You can access it here : https://adevsblog.surge.sh/
 
-Checkout the backend I built here : https://github.com/oliv-bernier/blog_backend
+Check out the backend I built here : https://github.com/oliv-bernier/blog_backend
 
 ## Project setup
 ```
